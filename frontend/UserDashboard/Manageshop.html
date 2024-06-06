@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Shops</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #searchBar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="customers.html">Customers</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="payments.html">Payments</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Manage Shops</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchShops()" placeholder="Search for shops..">
+        </div>
+        <table id="shopsTable">
+            <thead>
+                <tr>
+                    <th>Shop Name</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dummy data for 20 shops -->
+                <tr>
+                    <td>Green Grocers</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fresh veg shop</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Green Grocers</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fresh veg shop</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Green Grocers</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fresh veg shop</td>
+                    <td>123 Main Street</td>
+                    <td>123-456-7890</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more shops -->
+                <tr>
+                    <td>Fresh Farms</td>
+                    <td>456 Elm Street</td>
+                    <td>987-654-3210</td>
+                    <td class="actions">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Add more dummy data here -->
+            </tbody>
+        </table>
+        <button class="btn-add" onclick="addShop()">Add Shop</button>
+    </main>
+    <script>
+        function searchShops() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('shopsTable');
+            const tr = table.getElementsByTagName('tr');
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let txtValue = '';
+                for (let j = 0; j < td.length - 1; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+
+        function addShop() {
+            alert('Add shop functionality is not implemented.');
+        }
+
+        function editShop() {
+            alert('Edit shop functionality is not implemented.');
+        }
+
+        function deleteShop() {
+            alert('Delete shop functionality is not implemented.');
+        }
+
+        document.querySelectorAll('.btn-edit').forEach(button => {
+            button.addEventListener('click', editShop);
+        });
+
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', deleteShop);
+        });
+    </script>
+</body>
+</html>

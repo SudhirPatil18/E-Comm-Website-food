@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #searchBar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-reply {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+   
+    <main>
+        <h2>Messages</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchMessages()" placeholder="Search for messages..">
+        </div>
+        <table id="messagesTable">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dummy data for 20 messages -->
+                <tr>
+                    <td>Pranati Shinde</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Ram Sathpute</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rahul Ghandi</td>
+                    <td>Hi, I have a question Who is Prime Minister 2024?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Mr.Narendra Modi</td>
+                    <td>Mai Narendra Modi Shatap leta hua ki 2024 PM.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sita Ram</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Sham Patil</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sita Ram</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Sham Patil</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sita Ram</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Sham Patil</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr><tr>
+                    <td>Sita Ram</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Sham Patil</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sita Ram</td>
+                    <td>Hi, I have a question about my order.</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for 19 more messages -->
+                <tr>
+                    <td>Sham Patil</td>
+                    <td>Can you provide more details about product X?</td>
+                    <td class="actions">
+                        <button class="btn-reply">Reply</button>
+                    </td>
+                </tr>
+                
+                <!-- Add more dummy data here -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function searchMessages() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('messagesTable');
+            const tr = table.getElementsByTagName('tr');
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let txtValue = '';
+                for (let j = 0; j < td.length - 1; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+
+        function replyMessage() {
+            alert('Reply to message functionality is not implemented.');
+        }
+
+        document.querySelectorAll('.btn-reply').forEach(button => {
+            button.addEventListener('click', replyMessage);
+        });
+    </script>
+</body>
+</html>

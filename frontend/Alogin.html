@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    /* removed toastify CSS and script tags as they are not used in this code */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .login-form {
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .input-field {
+      width: 92%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: darkred;
+    }
+
+    a {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <div class="profile-image">
+        <img id="loginImage" src="images/login-animation.gif" alt="Login Image">
+      </div>
+      <h1 style="text-align: center; margin-top: 20px;">Admin</h1>
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="input-field">
+
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" class="input-field">
+          <span id="togglePassword" class="toggle-icon">Show</span>
+        </div>
+
+        <button type="submit" class="submit-btn" onclick="admincheck(event)">Login</button>
+      </form>
+      <p style="text-align: center;">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+  </div>
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordField.type === 'password' ? 'text' : 'password';
+      passwordField.type = type;
+      togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+    });
+
+    function admincheck(event) {
+      event.preventDefault(); // prevent form submission
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (email === 'admin@gmail.com' && password === 'Admin@123') {
+        window.location.href = './AdminDashboard/index.html'; // redirect to dashboard page
+      } else {
+        alert('Invalid email or password');
+      }
+    }
+  </script>
+</body>
+</html>
