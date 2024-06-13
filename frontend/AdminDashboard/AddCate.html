@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/images/logo1.jpeg" rel="icon">
+  <title>Category Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: background-color 0.3s;
+    }
+
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+      border-top: none;
+    }
+
+    .input-field {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .category-list {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .category-list th, .category-list td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .category-list th {
+      background-color: #f2f2f2;
+    }
+
+    .delete-btn, .edit-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .edit-btn {
+      background-color: #007bff;
+    }
+
+    .delete-btn:hover, .edit-btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'addCategory')">Add Category</button>
+    <button class="tablinks" onclick="openTab(event, 'manageCategory')">Manage Categories</button>
+  </div>
+
+  <!-- Add Category Tab -->
+  <div id="addCategory" class="tabcontent">
+    <h2>Add New Category</h2>
+    <form id="addCategoryForm" onsubmit="addCategory(event)">
+      <label for="categoryName">Category Name:</label><br>
+      <input type="text" id="categoryName" name="categoryName" class="input-field" placeholder="Enter category name"><br>
+      <button type="submit" class="submit-btn">Add Category</button>
+    </form>
+  </div>
+
+  <!-- Manage Category Tab -->
+  <div id="manageCategory" class="tabcontent" style="display:block;">
+    <h2>Manage Categories</h2>
+    <table class="category-list">
+      <thead>
+        <tr>
+          <th>Category ID</th>
+          <th>Category Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="categoryListBody">
+        <!-- Category data will be populated here dynamically -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Sample categories array (simulating database data)
+  let categories = [
+    { id: 1, name: 'Electronics' },
+    { id: 2, name: 'Clothing' },
+    { id: 3, name: 'Books' }
+  ];
+
+  // Function to switch between tabs
+  function openTab(event, tabName) {
+    const tabcontents = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontents.length; i++) {
+      tabcontents[i].style.display = "none";
+    }
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.classList.add("active");
+
+    if (tabName === 'manageCategory') {
+      populateCategoryList();
+    }
+  }
+
+  // Function to add a new category
+  function addCategory(event) {
+    event.preventDefault();
+    const categoryName = document.getElementById("categoryName").value.trim();
+    if (categoryName === '') {
+      alert('Please enter a category name.');
+      return;
+    }
+
+    // Simulate adding to database (push to array for demo purposes)
+    const newCategory = {
+      id: categories.length + 1,
+      name: categoryName
+    };
+    categories.push(newCategory);
+
+    // Reset form and update category list
+    document.getElementById("addCategoryForm").reset();
+    populateCategoryList();
+    alert('Category added successfully!');
+  }
+
+  // Function to delete a category
+  function deleteCategory(id) {
+    const index = categories.findIndex(category => category.id === id);
+    if (index !== -1) {
+      categories.splice(index, 1);
+      populateCategoryList();
+      alert('Category deleted successfully!');
+    }
+  }
+
+  // Function to populate the category list table
+  function populateCategoryList() {
+    const categoryListBody = document.getElementById('categoryListBody');
+    categoryListBody.innerHTML = '';
+
+    categories.forEach(category => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${category.id}</td>
+        <td>${category.name}</td>
+        <td>
+          <button class="edit-btn" onclick="editCategory(${category.id})">Edit</button>
+          <button class="delete-btn" onclick="deleteCategory(${category.id})">Delete</button>
+        </td>
+      `;
+      categoryListBody.appendChild(row);
+    });
+  }
+
+  // Function to edit a category (placeholder, not implemented in this example)
+  function editCategory(id) {
+    alert(`Edit category with ID ${id}`);
+    // Implement your edit logic here, e.g., pre-fill a form for editing
+  }
+
+  // Initial population of category list on page load
+  populateCategoryList();
+</script>
+
+</body>
+</html>

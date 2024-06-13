@@ -74,7 +74,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        .btn-view {
+        .btn-view, .btn-check-details {
             background-color: #17a2b8;
             color: white;
         }
@@ -109,226 +109,50 @@
         <table id="ordersTable">
             <thead>
                 <tr>
-                    <th>Order Number</th>
+                    <th>Shop Name</th>
+                    <th>Shop Address</th>
                     <th>Customer Name</th>
+                    <th>Customer Address</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
                     <th>Order Total</th>
+                    <th>Wallet</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Dummy data for 20 orders -->
+                <!-- Dummy data for orders -->
                 <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
+                    <td><a href="shop-details.html?shopName=Shop1">Shop1</a></td>
+                    <td>123 Street, City</td>
+                    <td><a href="customer-details.html?customerName=John Doe">John Doe</a></td>
+                    <td>456 Avenue, City</td>
+                    <td>Product1</td>
+                    <td>2</td>
                     <td>₹123.45</td>
+                    <td>₹1000.00</td>
                     <td class="actions">
-                        <button class="btn-view">View</button>
+                        <button class="btn-check-details" onclick="location.href='order-details.html?orderId=Order1'">Check Details</button>
                         <button class="btn-edit">Edit</button>
                         <button class="btn-delete">Delete</button>
                     </td>
                 </tr>
-                <!-- Repeat similar rows for 19 more orders -->
                 <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
+                    <td><a href="shop-details.html?shopName=Shop2">Shop2</a></td>
+                    <td>789 Road, City</td>
+                    <td><a href="customer-details.html?customerName=Jane Smith">Jane Smith</a></td>
+                    <td>101 Blvd, City</td>
+                    <td>Product2</td>
+                    <td>1</td>
                     <td>₹67.89</td>
+                    <td>₹2000.00</td>
                     <td class="actions">
-                        <button class="btn-view">View</button>
+                        <button class="btn-check-details" onclick="location.href='order-details.html?orderId=Order2'">Check Details</button>
                         <button class="btn-edit">Edit</button>
                         <button class="btn-delete">Delete</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1001</td>
-                    <td>John Doe</td>
-                    <td>₹123.45</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat similar rows for 19 more orders -->
-                <tr>
-                    <td>1002</td>
-                    <td>Jane Smith</td>
-                    <td>₹67.89</td>
-                    <td class="actions">
-                        <button class="btn-view">View</button>
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                
-                <!-- Add more dummy data here -->
+                <!-- Repeat similar rows for more orders -->
             </tbody>
         </table>
     </main>
@@ -351,30 +175,6 @@
                 }
             }
         }
-
-        function viewOrder() {
-            alert('View order functionality is not implemented.');
-        }
-
-        function editOrder() {
-            alert('Edit order functionality is not implemented.');
-        }
-
-        function deleteOrder() {
-            alert('Delete order functionality is not implemented.');
-        }
-
-        document.querySelectorAll('.btn-view').forEach(button => {
-            button.addEventListener('click', viewOrder);
-        });
-
-        document.querySelectorAll('.btn-edit').forEach(button => {
-            button.addEventListener('click', editOrder);
-        });
-
-        document.querySelectorAll('.btn-delete').forEach(button => {
-            button.addEventListener('click', deleteOrder);
-        });
     </script>
 </body>
 </html>
