@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-history {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+    </header>
+    <main>
+        <h2>Order History</h2>
+        <div class="order-history">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTable">
+                    <!-- Order rows will be added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const orders = [
+        { productName: 'Product 1', quantity: 2, orderDate: '2024-06-28', status: 'Shipped' },
+        { productName: 'Product 2', quantity: 1, orderDate: '2024-06-27', status: 'Processing' },
+        { productName: 'Product 3', quantity: 3, orderDate: '2024-06-25', status: 'Delivered' }
+    ];
+
+    const orderTable = document.getElementById('orderTable');
+
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${order.productName}</td>
+            <td>${order.quantity}</td>
+            <td>${order.orderDate}</td>
+            <td>${order.status}</td>
+            <td>
+                <button onclick="viewDetails('${order.productName}')">View</button>
+                <button onclick="trackOrder('${order.productName}')">Track</button>
+            </td>
+        `;
+
+        orderTable.appendChild(row);
+    });
+});
+
+function viewDetails(productName) {
+    alert(`Viewing details for ${productName}`);
+}
+
+function trackOrder(productName) {
+    alert(`Tracking order for ${productName}`);
+}
+
+    </script>
+</body>
+</html>

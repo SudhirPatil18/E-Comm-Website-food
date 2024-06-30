@@ -76,6 +76,7 @@
         }
         .box h3 {
             margin-top: 0;
+            text-align: center;
         }
         canvas {
             max-width: 100%;
@@ -95,7 +96,58 @@
             background-color: #f2f2f2;
         }
 
-        
+
+        /* General Styles */
+.dropdown-parent {
+    position: relative;
+}
+
+.dropbtn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    /* background-color: #6dbab1; */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #6dbab1;
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.dropdown-content li {
+    list-style: none;
+}
+
+.dropdown-content li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown on hover */
+.dropdown-parent:hover .dropdown-content {
+    display: block;
+}
 
 
     </style>
@@ -147,37 +199,49 @@
         <ul class="custom-scroll ">
             <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
                         class="la la-dashboard"></i>Dashboard</a></li>
-            <li><a href="Addshop.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Add Shop</a></li>
+            <li><a href="MnagePost.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Product</a></li>
+          
+            <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
             <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
                         class="la la-bullhorn"></i>Campaign</a></li> -->
-            <li class="dropdown-sub-menu">
+            <!-- <li class="dropdown-sub-menu">
                 <a href="Customers.html" class="waves-effect waves-primary"><i
-                            class="la la-users"></i>Customers</a>
-                <ul class="sub-menu">
+                            class="la la-users"></i>Customers</a> -->
+                <!-- <ul class="sub-menu">
                         <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
                         <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
-                    </ul>
+                    </ul> -->
             </li>
-            <li><a href="Orders.html" class="waves-effect waves-primary"><i
-                            class="la la-cart-arrow-down"></i>Orders</a></li>
+            <!-- <li><a href="Orders.html" class="waves-effect waves-primary"><i
+                            class="la la-cart-arrow-down"></i>Orders</a></li> -->
+
+
+            <li><a href="Orders.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Orders</a></li>
+                            
+                            
+                            
             <li><a href="Messages.html" class="waves-effect waves-primary"><i
                             class="la la-wechat"></i>Messages</a></li>
             <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a>
             </li>
-            <ul class="navbar">
-                <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"><i class="la la-image"></i>Farmer Section</a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">Crop Farmer</a></li>
-                        <li><a href="#">Dairy Farmer</a></li>
-                        <li><a href="#">Poultry Farmer</a></li>
-                        <li><a href="#">Livestock Farmer</a></li>
-                        <li><a href="#">Horticulture Farmer</a></li>
-                        <li><a href="#">Organic Farmer</a></li>
-                        <li><a href="#">Aquaculture Farmer</a></li>
-                        <li><a href="#">Agroforestry Farmer</a></li>
+            
+                <!-- <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"></i>Farmer Section</a>
+                    
+                </li> -->
+                <li class="dropdown-parent" aria-haspopup="true" aria-expanded="false">
+                    <a href="Manageshop.html" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
+                        <i class="la la-image"></i>Farmer Section
+                    </a>
+                    <ul id="ordersDropdown" class="dropdown-content" role="menu">
+                        <li role="none"><a href="Farmer_Order.html" class="waves-effect waves-primary" role="menuitem">Order Form</a></li>
+                        <li role="none"><a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary" role="menuitem">History Orders</a></li>
+                        <li role="none"><a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary" role="menuitem">Farmer Details</a></li>
+                        <li role="none"><a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary" role="menuitem">Payment History</a></li>
+                        <li role="none"><a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary" role="menuitem">Cart</a></li>
                     </ul>
                 </li>
-            </ul>
+                
+                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a>
             <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
             <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
             </li>
@@ -394,11 +458,25 @@
                 <h3>Order Status</h3>
                 <canvas id="orderStatusChart"></canvas>
             </div>
-            <div class="box">
-                <h3>Shop Count</h3>
-                <h2 id="shopCount">89</h2>
+            <div class="box order-count">
+                <h3> Customers Orders</h3>
+                
+                    <p style="text-align: center;">Number of Orders: <span id="orderCount">0</span></p>
+                    
+                    <button type="button" class="btn btn-primary" onclick="redirectToOrders()" style="    margin-left: 110px;
+    margin-top: 20px;">Go to Orders</button>
+                
             </div>
             <div class="box">
+                <h3> Farmer Products</h3>
+                <h2 id="shopCount">89</h2>
+            </div>
+            <div id="productList" class="product-list box">
+                
+                <!-- Product items will be populated here -->
+                <button type="button" class="btn btn-primary" onclick="redirectToOrders()">Go to Orders</button>
+            </div>
+            <!-- <div class="box">
                 <h3>Shop Details</h3>
                 <table id="shopTable">
                     <thead>
@@ -409,7 +487,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dummy data for shop details -->
+                        <!-- Dummy data for shop details 
                         <tr>
                             <td>Green Grocers</td>
                             <td>123 Main Street</td>
@@ -422,7 +500,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dummy data for shop details -->
+                        <!-- Dummy data for shop details 
                         <tr>
                             <td>Green Grocers</td>
                             <td>123 Main Street</td>
@@ -435,7 +513,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dummy data for shop details -->
+                        <!-- Dummy data for shop details 
                         <tr>
                             <td>Green Grocers</td>
                             <td>123 Main Street</td>
@@ -448,19 +526,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dummy data for shop details -->
+                        <!-- Dummy data for shop details 
                         <tr>
                             <td>Green Grocers</td>
                             <td>123 Main Street</td>
                             <td>123-456-7890</td>
                         </tr>
-                        <!-- Repeat similar rows for more shops -->
+                        <!-- Repeat similar rows for more shops 
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </main>
     <script>
+
+const products = [
+    { name: "Tomato", category: "Vegetables", price: 2.5 },
+    { name: "Apple", category: "Fruits", price: 1.2 },
+    { name: "Banana", category: "Fruits", price: 0.5 },
+    // Add more product objects as needed
+];
+
+function displayProducts() {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = ''; // Clear previous content
+    
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+        productItem.innerHTML = `
+            <div class="product-info">
+                <h4>${product.name}</h4>
+                <p>Category: ${product.category}</p>
+                <p>Price: $${product.price.toFixed(2)}</p>
+            </div>
+            <div class="product-actions">
+                <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            </div>
+        `;
+        productList.appendChild(productItem);
+    });
+}
+
+function addToCart(name, price) {
+    // You can implement cart functionality here
+    console.log(`Added ${name} to cart for $${price.toFixed(2)}`);
+}
+
+// Call the function to display products when the page loads
+window.onload = displayProducts;
+
         // Dummy data for charts
         const customerAcquisitionData = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -530,7 +645,29 @@
     <!-- ########## END: MAIN PANEL ########## -->
 
 </body>
+<script>
+    function toggleDropdown(event, dropdownId) {
+    event.preventDefault();
+    document.getElementById(dropdownId).classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function redirectToOrders() {
+            window.location.href = "Orders.html";
+        }
+</script>
 <script src="assets/scripts/jquery.min.js"></script>
 <script src="assets/scripts/popper.min.js"></script>
 <script src="assets/scripts/bootstrap-slider.min.js"></script>

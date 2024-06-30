@@ -64,6 +64,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             margin-top: 50px;
+            margin-left: 135px;
         }
         .box {
             background-color: white;
@@ -93,6 +94,75 @@
         th {
             background-color: #f2f2f2;
         }
+
+        @media (min-width: 768px) {
+    .container {
+        justify-content: space-between;
+        margin-left: 135px;
+    }
+
+    .box {
+        width: calc(33.33% - 20px);
+        }
+    }
+
+
+    .dashboard {
+    /* max-width: 800px;
+    margin: 0 auto;
+    padding: 20px; */
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.order-list {
+    margin-top: 20px;
+}
+
+.order-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.order-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+.order-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.requested-by {
+    font-style: italic;
+    color: #888;
+}
+
+.view-details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-details-btn:hover {
+    background-color: #0056b3;
+}
+
+
     </style>
 </head>
 
@@ -141,25 +211,38 @@
         </div>
         <ul class="custom-scroll">
             <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
-                        class="la la-dashboard"></i>Dashboard</a></li>
-            <li><a href="Addshop.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Add Shop</a></li>
+                        class="la la-dashboard"></i>Dashboard</a>
+            </li>
+
+            <li><a href="AddProducts.html" class="waves-effect waves-primary"><i class="la la-plus"></i> Add Products</a></li>
+
+            <li><a href="ShopKeeper.html" class="waves-effect waves-primary"><i class="la la-plus"></i> Shop Keeper Order</a></li>
+
+            <li><a href="ManageProducts.html" class="waves-effect waves-primary"><i class="la la-cogs"></i>
+                Manage Products</a></li>
+                
+            <!-- <li><a href="Addshop.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Shop Registration</a></li> -->
+
             <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
                         class="la la-bullhorn"></i>Campaign</a></li> -->
+
+                        <!-- <li><a href="Manageshop.html" class="waves-effect waves-primary"><i class="la la-image"></i>Manage Shop</a></li>
             <li class="dropdown-sub-menu">
                 <a href="Customers.html" class="waves-effect waves-primary"><i
-                            class="la la-users"></i>Customers</a>
-                <!-- <ul class="sub-menu">
+                            class="la la-users"></i>Shop Customers</a>
+                <ul class="sub-menu">
                         <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
                         <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
-                    </ul> -->
-            </li>
+                    </ul> 
+            </li> -->
             <li><a href="Orders.html" class="waves-effect waves-primary"><i
-                            class="la la-cart-arrow-down"></i>Orders</a></li>
+                            class="la la-cart-arrow-down"></i>Cards</a></li>
             <li><a href="Messages.html" class="waves-effect waves-primary"><i
                             class="la la-wechat"></i>Messages</a></li>
             <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a>
             </li>
-            <li><a href="Manageshop.html" class="waves-effect waves-primary"><i class="la la-image"></i>Manage Shop</a></li>
+           
+            <li><a href="Farmer-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a>
             <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
             <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
             </li>
@@ -380,6 +463,20 @@
                 <h3>Shop Count</h3>
                 <h2 id="shopCount">89</h2>
             </div>
+            <div class="dashboard">
+                <h2 style="font-size: x-large">Orders from Shopkeepers</h2>
+                <div id="orderList" class="order-list">
+                    <!-- Orders will be dynamically added here -->
+                    <!-- Example order item template -->
+                    <!-- <div class="order-item">
+                        <h3>Product Name</h3>
+                        <p>Quantity: 10</p>
+                        <p class="requested-by">Requested by: Shopkeeper Name</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div> -->
+                </div>
+            </div>
+            
             <div class="box">
                 <h3>Shop Details</h3>
                 <table id="shopTable">
@@ -502,6 +599,35 @@
                 }
             }
         });
+        
+       //Shop Keeper Dashboard
+// Example data (replace with actual data or fetch from server)
+const orders = [
+    { id: 1, productName: 'Tomatoes', quantity: 20, shopkeeper: 'John Doe' },
+    { id: 2, productName: 'Potatoes', quantity: 30, shopkeeper: 'Jane Smith' },
+    { id: 3, productName: 'Carrots', quantity: 15, shopkeeper: 'David Johnson' },
+    // Add more orders here
+];
+
+function displayOrders() {
+    const orderList = document.getElementById('orderList');
+    orderList.innerHTML = '';
+
+    orders.forEach(order => {
+        const orderItem = document.createElement('div');
+        orderItem.classList.add('order-item');
+        orderItem.innerHTML = `
+            <h3>${order.productName}</h3>
+            <p>Quantity: ${order.quantity}</p>
+            <p class="requested-by">Requested by: ${order.shopkeeper}</p>
+            <button class="view-details-btn">View Details</button>
+        `;
+        orderList.appendChild(orderItem);
+    });
+}
+
+displayOrders();
+
     </script>
 
     <!-- ########## START: MAIN PANEL ########## -->
