@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Details</title>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details, .images, .wallet, .transaction-history, .order-history {
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .details p, .wallet p, .transaction-history table, .order-history table {
+            margin: 0 0 10px;
+        }
+        .images img {
+            max-width: 200px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        th, td {
+            border-radius: 4px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .action-buttons button {
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .action-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h2, h3 {
+    margin-bottom: 10px;
+}
+
+.details, .images, .wallet, .transaction-history, .order-history {
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.pay-request-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pay-request-btn:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farmer Details</h1>
+    </header>
+    <main>
+        <h2 id="farmerName">Farmer Name</h2>
+        <div class="details">
+            <h3>Details</h3>
+            <p>Address: <span id="farmerAddress">123 Farm Lane, Village</span></p>
+            <p>Contact Number: <span id="farmerPhone">123-456-7890</span></p>
+        </div>
+        <div class="images">
+            <h3>Documents</h3>
+            <img src="farmer-id.jpg" alt="Farmer ID">
+            <img src="land-documents.jpg" alt="Land Documents">
+        </div>
+        <div class="wallet">
+            <h3>Wallet</h3>
+            <p>Current Balance: ₹<span id="walletBalance">1000.00</span></p>
+            <p>Total Transactions: <span id="totalTransactions">10</span></p>
+            <p>Total Earnings: ₹<span id="totalEarnings">5000.00</span></p>
+        </div>
+        <div class="transaction-history">
+            <h3>Transaction History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Transaction ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transaction history rows will be populated dynamically via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="order-history">
+            <h3>Order History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shop Name</th>
+                        <th>Shop Address</th>
+                        <th>Phone Number</th>
+                        <th>Payment Method</th>
+                        <th>Order Quantity Details</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Order history rows will be populated dynamically via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <button id="payRequestBtn" class="pay-request-btn">Pay Request</button>
+
+        <!-- Modal -->
+        <div id="payRequestModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Pay Request Form</h3>
+                <form id="payRequestForm">
+                    <label for="farmerNameInput">Farmer Name</label>
+                    <input type="text" id="farmerNameInput" required>
+
+                    <label for="farmerPhoneInput">Farmer Phone</label>
+                    <input type="text" id="farmerPhoneInput" required>
+
+                    <label for="farmerAddressInput">Farmer Address</label>
+                    <input type="text" id="farmerAddressInput" required>
+
+                    <label for="verificationStatus">Verification Status</label>
+                    <input type="text" id="verificationStatus" required>
+
+                    <label for="requestedAmount">Requested Amount</label>
+                    <input type="number" id="requestedAmount" required>
+
+                    <label for="remainingAmount">Remaining Amount</label>
+                    <input type="number" id="remainingAmount" required>
+
+                    <label for="bankName">Bank Name</label>
+                    <input type="text" id="bankName" required>
+
+                    <label for="ifscCode">IFSC Code</label>
+                    <input type="text" id="ifscCode" required>
+
+                    <label for="holderName">Holder Name</label>
+                    <input type="text" id="holderName" required>
+
+                    <label for="branchName">Branch Name</label>
+                    <input type="text" id="branchName" required>
+
+                    <label for="passbookPhoto">Passbook Photo</label>
+                    <input type="file" id="passbookPhoto" accept="image/*" required>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Replace with actual data fetched from backend
+            const farmerDetails = {
+                name: 'Farmer Name',
+                address: '123 Farm Lane, Village',
+                phone: '123-456-7890',
+                walletBalance: '1000.00',
+                totalTransactions: '10',
+                totalEarnings: '5000.00',
+                transactionHistory: [
+                    { date: '2024-01-01', amount: '500.00', type: 'Credit', transactionId: 'TXN12345' },
+                    { date: '2024-01-02', amount: '300.00', type: 'Credit', transactionId: 'TXN12346' },
+                    { date: '2024-01-03', amount: '200.00', type: 'Credit', transactionId: 'TXN12347' }
+                ],
+                orderHistory: [
+                    { shopName: 'Farmers Market', shopAddress: '456 Market St', phoneNumber: '987-654-3210', paymentMethod: 'Cash', orderQuantityDetails: '10 bags of rice', actions: ['View', 'Edit', 'Delete'] },
+                    { shopName: 'Organic Farm Shop', shopAddress: '789 Farm Rd', phoneNumber: '555-123-4567', paymentMethod: 'Card', orderQuantityDetails: '5 crates of vegetables', actions: ['View', 'Edit', 'Delete'] }
+                ]
+            };
+
+            // Populate farmer details
+            document.getElementById('farmerName').innerText = farmerDetails.name;
+            document.getElementById('farmerAddress').innerText = farmerDetails.address;
+            document.getElementById('farmerPhone').innerText = farmerDetails.phone;
+            document.getElementById('walletBalance').innerText = farmerDetails.walletBalance;
+            document.getElementById('totalTransactions').innerText = farmerDetails.totalTransactions;
+            document.getElementById('totalEarnings').innerText = farmerDetails.totalEarnings;
+
+            // Populate transaction history table
+            const transactionHistoryTable = document.querySelector('.transaction-history tbody');
+            transactionHistoryTable.innerHTML = farmerDetails.transactionHistory.map(transaction => `
+                <tr>
+                    <td>${transaction.date}</td>
+                    <td>₹${transaction.amount}</td>
+                    <td>${transaction.type}</td>
+                    <td>${transaction.transactionId}</td>
+                </tr>
+            `).join('');
+
+            // Populate order history table
+            const orderHistoryTable = document.querySelector('.order-history tbody');
+            orderHistoryTable.innerHTML = farmerDetails.orderHistory.map(order => `
+                <tr>
+                    <td>${order.shopName}</td>
+                    <td>${order.shopAddress}</td>
+                    <td>${order.phoneNumber}</td>
+                    <td>${order.paymentMethod}</td>
+                    <td>${order.orderQuantityDetails}</td>
+                    <td class="action-buttons">
+                        ${order.actions.map(action => `<button>${action}</button>`).join('')}
+                    </td>
+                </tr>
+            `).join('');
+        });
+
+        //Model Functionality
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('payRequestModal');
+    const btn = document.getElementById('payRequestBtn');
+    const closeBtn = document.querySelector('.close');
+
+    btn.onclick = () => {
+        modal.style.display = 'block';
+    };
+
+    closeBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    const form = document.getElementById('payRequestForm');
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission
+        alert('Payment request submitted!');
+        modal.style.display = 'none';
+    };
+});
+
+    </script>
+</body>
+</html>

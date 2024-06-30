@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Order</title>
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+        }
+    
+        .container {
+          padding: 20px;
+        }
+    
+        .shop-form {
+          width: 100%;
+          max-width: 600px;
+          background-color: white;
+          margin: auto;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .input-field {
+          width: 92%;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+        }
+    
+        .submit-btn {
+          width: 30%;
+          padding: 10px;
+          background-color: red;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 20px;
+          margin-left: 70px;
+        }
+    
+        .submit-btn:hover {
+          background-color: darkred;
+        }
+    
+        a {
+          color: red;
+        }
+      </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="shop-form">
+          <h1 style="text-align: center; margin-top: 20px;">Orders</h1>
+          <form id="shopForm">
+            <label for="name">Shop Name</label>
+            <input type="text" id="name" name="name" class="input-field">
+
+            <label for="name">Orders Products</label>
+            <textarea type="text" id="address" name="address" class="input-field" placeholder="Orders Products" rows="10"> </textarea>
+            
+    
+            <label for="phone">Our Address</label>
+            <input type="tel" id="phone" name="phone" class="input-field">
+    
+        
+    
+            <button type="submit" class="submit-btn " onclick="shopcheck()" style="background-color: green;">Submit</button>
+            <button type="submit" class="submit-btn" onclick="shopcheck()">Cancle</button>
+          </form>
+          
+        </div>
+      </div>
+      <script>
+        function shopcheck() {
+          // Add your shopcheck() function implementation here
+        }
+      </script>
+
+
+</body>
+</html>
