@@ -27,130 +27,182 @@
     <![endif]-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #007bff;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 10px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        main {
-            padding: 20px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background: #007bff;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        margin-left: 135px;
+    }
+    
+    .box {
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: calc(33.33% - 20px);
+    }
+    
+    .box h3 {
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    /* General Styles */
+    .dropdown-parent {
+        position: relative;
+    }
+    
+    .dropbtn {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        /* background-color: #6dbab1; */
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #6dbab1;
+        outline: none;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 5px;
+        padding: 10px 0;
+    }
+    
+    .dropdown-content li {
+        list-style: none;
+    }
+    
+    .dropdown-content li a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s ease;
+    }
+    
+    .dropdown-content li a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    /* Show the dropdown on hover */
+    .dropdown-parent:hover .dropdown-content {
+        display: block;
+    }
+    
+    /* Mobile view CSS */
+    @media (max-width: 768px) {
         .container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            margin-left: 135px;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 0;
         }
+    
         .box {
-            background-color: white;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            width: calc(33.33% - 20px);
+            width: 90%;
         }
-        .box h3 {
-            margin-top: 0;
-            text-align: center;
+    
+        nav ul {
+            flex-direction: column;
         }
-        canvas {
-            max-width: 100%;
-            height: auto;
+    
+        nav ul li {
+            margin: 10px 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+    }
+    /* Toggle for Sidebar */
+@media (max-width: 768px) {
+    .br-sideleft {
+        transform: translateX(-100%);
+    }
 
+    .br-sideleft.active {
+        transform: translateX(0);
+    }
 
-        /* General Styles */
-.dropdown-parent {
-    position: relative;
+    .overlay-background.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
 }
-
-.dropbtn {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    /* background-color: #6dbab1; */
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #6dbab1;
-    outline: none;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px;
-    padding: 10px 0;
-}
-
-.dropdown-content li {
-    list-style: none;
-}
-
-.dropdown-content li a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content li a:hover {
-    background-color: #f1f1f1;
-}
-
-/* Show the dropdown on hover */
-.dropdown-parent:hover .dropdown-content {
-    display: block;
-}
-
-
-    </style>
+</style>    
 </head>
 
 <body>
@@ -199,7 +251,7 @@
         <ul class="custom-scroll ">
             <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
                         class="la la-dashboard"></i>Dashboard</a></li>
-            <li><a href="MnagePost.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Product</a></li>
+            <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Product</a></li>
           
             <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
             <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
@@ -237,7 +289,7 @@
                         <li role="none"><a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary" role="menuitem">History Orders</a></li>
                         <li role="none"><a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary" role="menuitem">Farmer Details</a></li>
                         <li role="none"><a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary" role="menuitem">Payment History</a></li>
-                        <li role="none"><a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary" role="menuitem">Cart</a></li>
+                        <!-- <li role="none"><a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary" role="menuitem">Cart</a></li> -->
                     </ul>
                 </li>
                 

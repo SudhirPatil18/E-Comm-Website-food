@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-     <style>
-        /* styles.css */
-
-/* Basic Reset */
-* {
+    <title>Order Tracking</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333;
 }
 
 header {
@@ -32,98 +23,74 @@ header h1 {
     margin-bottom: 10px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-main {
-    padding: 20px;
-}
-
 #searchBar {
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 #searchInput {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-table th, table td {
+th, td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
 }
 
-table th {
-    background-color: #f0f0f0;
+th {
+    background-color: #f2f2f2;
 }
 
-.actions button {
+.actions button,
+.btn-map {
     margin-right: 5px;
     padding: 5px 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.actions .btn-process {
-    background-color: #f39c12;
-    color: #fff;
+.btn-process {
+    background-color: #ff9800;
+    color: white;
 }
 
-.actions .btn-delivered {
-    background-color: #3498db;
-    color: #fff;
+.btn-delivered {
+    background-color: #4caf50;
+    color: white;
 }
 
-.actions .btn-successful {
-    background-color: #2ecc71;
-    color: #fff;
+.btn-successful {
+    background-color: #2196f3;
+    color: white;
 }
 
-.actions button:hover {
-    opacity: 0.8;
+.btn-map {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-map:hover {
+    background-color: #0056b3;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5em;
+    #searchBar {
+        margin: 10px;
     }
 
-    nav ul li {
-        display: block;
-        margin: 5px 0;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 10px;
-        background-color: #444;
+    #searchInput {
+        padding: 8px;
     }
 
     table, th, td {
@@ -131,137 +98,154 @@ table th {
         width: 100%;
     }
 
-    table th, table td {
-        box-sizing: border-box;
+    table {
+        border: 0;
     }
 
-    table thead {
-        display: none;
-    }
-
-    table tr {
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    table td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
+    th, td {
         border: none;
         border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
     }
 
-    table td:last-child {
-        border-bottom: none;
+    th {
+        background-color: transparent;
+        font-weight: bold;
+        text-align: left;
     }
 
-    table td::before {
+    th::before, td::before {
         content: attr(data-label);
-        flex: 1;
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
         font-weight: bold;
     }
 
-    .actions button {
-        margin-bottom: 5px;
-        width: 100%;
-        box-sizing: border-box;
+    th:last-child, td:last-child {
+        border-bottom: 0;
+    }
+
+    .actions button,
+    .btn-map {
+        padding: 5px;
+        font-size: 0.9em;
+        margin: 5px 0;
+    }
+
+    th::before {
+        display: none;
     }
 }
 
-     </style>
+    </style>
 </head>
 <body>
     <header>
-        <h1>Admin Dashboard</h1>
-        <nav>
+        <h1 style="text-align: center;">Orders</h1>
+        <!-- <nav>
             <ul>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="customers.html">Customers</a></li>
-                <li><a href="messages.html">Messages</a></li>
-                <li><a href="payments.html">Payments</a></li>
-                <li><a href="manage-shops.html">Manage Shops</a></li>
+                <li><a href="add-post.html">Add Post</a></li>
+                <li><a href="manage-posts.html">Manage Posts</a></li>
             </ul>
-        </nav>
+        </nav> -->
     </header>
-    <main>
-        <h2 style="text-align: center;">Orders</h2>
-        <div id="searchBar">
-            <input type="text" id="searchInput" onkeyup="searchOrders()" placeholder="Search for orders..">
-        </div>
-        <table id="ordersTable">
-            <thead>
-                <tr>
-                    <th>Order Number</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Customer Name</th>
-                    <th>Address</th>
-                    <th>Payment</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy data for orders -->
-                <tr>
-                    <td>1001</td>
-                    <td>Product 1</td>
-                    <td>2</td>
-                    <td>₹123.45</td>
-                    <td>John Doe</td>
-                    <td>City, ZIP, State</td>
-                    <td>Credit Card</td>
-                    <td class="actions">
-                        <button class="btn-process">In process</button>
-                        <button class="btn-delivered">Delivered</button>
-                        <button class="btn-successful">Successful</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1002</td>
-                    <td>Product 2</td>
-                    <td>1</td>
-                    <td>₹67.89</td>
-                    <td>Jane Smith</td>
-                    <td>City, ZIP, State</td>
-                    <td>PayPal</td>
-                    <td class="actions">
-                        <button class="btn-process">In process</button>
-                        <button class="btn-delivered">Delivered</button>
-                        <button class="btn-successful">Successful</button>
-                    </td>
-                </tr>
-                <!-- Add more dummy data as needed -->
-            </tbody>
-        </table>
-    </main>
-    <script>
-        function searchOrders() {
-            let input = document.getElementById('searchInput');
-            let filter = input.value.toLowerCase();
-            let table = document.getElementById('ordersTable');
-            let tr = table.getElementsByTagName('tr');
+    <div id="searchBar">
+        <input type="text" id="searchInput" onkeyup="searchOrders()" placeholder="Search for orders..">
+    </div>
+    <table id="ordersTable">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Payment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dummy data for orders -->
+            <tr>
+                <td>1001</td>
+                <td>Product 1</td>
+                <td>2</td>
+                <td>₹123.45</td>
+                <td>John Doe</td>
+                <td>
+                    City, ZIP, State
+                    <button class="btn-map" onclick="trackOrder('City, ZIP, State')">Track on Map</button>
+                </td>
+                <td>Credit Card</td>
+                <td class="actions">
+                    <button class="btn-process">In process</button>
+                    <button class="btn-delivered">Delivered</button>
+                    <button class="btn-successful">Successful</button>
+                </td>
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>Product 2</td>
+                <td>1</td>
+                <td>₹67.89</td>
+                <td>Jane Smith</td>
+                <td>
+                    City, ZIP, State
+                    <button class="btn-map" onclick="trackOrder('City, ZIP, State')">Track on Map</button>
+                </td>
+                <td>PayPal</td>
+                <td class="actions">
+                    <button class="btn-process">In process</button>
+                    <button class="btn-delivered">Delivered</button>
+                    <button class="btn-successful">Successful</button>
+                </td>
+            </tr>
+            <!-- Add more dummy data as needed -->
+        </tbody>
+    </table>
 
-            for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName('td');
-                let showRow = false;
-                for (let j = 0; j < td.length; j++) {
-                    if (td[j]) {
-                        if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-                            showRow = true;
-                            break;
-                        }
-                    }
-                }
-                if (showRow) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+    <script>
+        // Function to search orders in the table
+function searchOrders() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById('ordersTable');
+    const tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName('td');
+        let match = false;
+
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                if (td[j].innerText.toUpperCase().indexOf(filter) > -1) {
+                    match = true;
+                    break;
                 }
             }
         }
+
+        if (match) {
+            tr[i].style.display = '';
+        } else {
+            tr[i].style.display = 'none';
+        }
+    }
+}
+
+// Function to open the address in Google Maps
+function trackOrder(address) {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(url, '_blank');
+}
+
     </script>
 </body>
 </html>
