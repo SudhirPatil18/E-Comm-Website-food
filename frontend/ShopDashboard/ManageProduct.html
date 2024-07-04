@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopkeeper Dashboard</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
      <style>
-        /* styles.css */
-
-/* Basic Reset */
+        /* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -147,6 +144,7 @@ table th {
     table, th, td {
         display: block;
         width: 100%;
+        margin-left: 50px;
     }
 
     table th, table td {
@@ -193,47 +191,31 @@ table th {
 <body>
     <header>
         <h1 style="text-align: center;">Manage Post</h1>
-        <!-- <nav>
-            <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="add-post.html">Add Post</a></li>
-                <li><a href="manage-posts.html">Manage Posts</a></li>
-            </ul>
-        </nav> -->
     </header>
     <main>
-        <!-- Add Post Page -->
         <section id="add-post">
-            <h2 style="text-align: center;     font-size: xx-large;">Add Post</h2>
-            <form id="postForm" style="    width: 70%; margin-left: 15%;">
+            <h2 style="text-align: center; font-size: xx-large;">Add Product</h2>
+            <form id="postForm" style="width: 70%; margin-left: 15%;">
                 <label for="post-title">Title</label>
                 <input type="text" id="post-title" name="post-title" required>
-
                 <label for="post-description">Description</label>
                 <textarea id="post-description" name="post-description" required></textarea>
-
                 <label for="post-price">Price</label>
                 <input type="number" id="post-price" name="post-price" required>
-
                 <label for="post-category">Category</label>
                 <select id="post-category" name="post-category" required>
                     <option value="">Select Category</option>
-                    <option value="Category 1">Category 1</option>
-                    <option value="Category 2">Category 2</option>
-                    <option value="Category 3">Category 3</option>
-                    <!-- Add more categories as needed -->
+                    <option value="Category 1">Vegetable</option>
+                    <option value="Category 2">Fruit</option>
+                    <option value="Category 3">Dairy</option>
                 </select>
-
                 <label for="post-image">Image</label>
                 <input type="file" id="post-image" name="post-image" accept="image/*" required>
-
                 <button type="submit">Add Post</button>
             </form>
         </section>
-
-        <!-- Manage Posts Page -->
         <section id="manage-posts">
-            <h2 style="text-align: center; margin-top: 5%;"  >Manage Posts</h2>
+            <h2 style="text-align: center; margin-top: 5%;">Manage Posts</h2>
             <table id="postsTable">
                 <thead>
                     <tr>
@@ -251,10 +233,7 @@ table th {
             </table>
         </section>
     </main>
-
     <script>
-        // scripts.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const postForm = document.getElementById('postForm');
     const postsTableBody = document.querySelector('#postsTable tbody');
@@ -361,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     renderPosts();
 });
-
     </script>
 </body>
 </html>
