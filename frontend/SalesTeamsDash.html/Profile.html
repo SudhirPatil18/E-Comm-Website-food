@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.folders {
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.folder-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.folder-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Sales Team Profile</h1>
+    </header>
+    <main>
+        <section class="personal-info">
+            <h2>Personal Information</h2>
+            <form id="personalInfoForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" value="John Doe">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="john@example.com">
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" value="123-456-7890">
+                
+                <label for="address">Address:</label>
+                <input type="text" id="address" value="123 Main St, City">
+                
+                <label for="zip">ZIP Code:</label>
+                <input type="text" id="zip" value="123456">
+                
+                <label for="pan">PAN Card Verification:</label>
+                <input type="text" id="pan" value="ABCDE1234F">
+                
+                <button type="submit">Save Changes</button>
+            </form>
+        </section>
+
+        <section class="folders">
+            <h2>My Folder</h2>
+            <div class="folder-tabs">
+                <button onclick="showFolder('coupons')">My Coupons</button>
+                <button onclick="showFolder('reviews')">My Reviews & Ratings</button>
+                <button onclick="showFolder('wishlist')">My Wishlist</button>
+                <button onclick="showFolder('notifications')">My Notifications</button>
+            </div>
+            <div id="coupons" class="folder-content">
+                <h3>My Coupons</h3>
+                <ul>
+                    <li>Coupon 1: 10% off</li>
+                    <li>Coupon 2: ₹500 off on orders above ₹5000</li>
+                </ul>
+            </div>
+            <div id="reviews" class="folder-content" style="display:none;">
+                <h3>My Reviews & Ratings</h3>
+                <ul>
+                    <li>Product 1: ★★★★☆ - Great product!</li>
+                    <li>Product 2: ★★★☆☆ - Satisfactory</li>
+                </ul>
+            </div>
+            <div id="wishlist" class="folder-content" style="display:none;">
+                <h3>My Wishlist</h3>
+                <ul>
+                    <li>Product 1</li>
+                    <li>Product 2</li>
+                </ul>
+            </div>
+            <div id="notifications" class="folder-content" style="display:none;">
+                <h3>My Notifications</h3>
+                <ul>
+                    <li>Order shipped</li>
+                    <li>New offer available</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script >
+    function showFolder(folderId) {
+        const folders = document.querySelectorAll('.folder-content');
+        folders.forEach(folder => {
+            folder.style.display = 'none';
+        });
+        document.getElementById(folderId).style.display = 'block';
+    }
+    
+    document.getElementById('personalInfoForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Changes saved successfully!');
+    });
+    </script>
+</body>
+</html>
