@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/images/logo1.jpeg" rel="icon">
+  <title>Required Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .shop-form {
+      width: 100%;
+      max-width: 600px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-field {
+      width: 92%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: darkred;
+    }
+
+    a {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="shop-form">
+      <h1 style="text-align: center; margin-top: 20px;">Required Form</h1>
+      <form id="shopForm">
+        <label for="name">Shop Name</label>
+        <input type="text" id="name" name="name" class="input-field">
+
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" class="input-field">
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" class="input-field">
+
+        <label for="shopPhoto">Shop Photo</label>
+        <input type="file" id="shopPhoto" name="shopPhoto" class="input-field">
+
+        <label for="aadharCard">Aadhar Card</label>
+        <input type="file" id="aadharCard" name="aadharCard" class="input-field">
+
+        <label for="panCard">PAN Card</label>
+        <input type="file" id="panCard" name="panCard" class="input-field">
+
+        <label for="idVerification">ID Verification</label>
+        <input type="file" id="idVerification" name="idVerification" class="input-field">
+
+        <label for="phoneVerification">Phone Number Verification</label>
+        <input type="file" id="phoneVerification" name="phoneVerification" class="input-field">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" class="input-field">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="input-field">
+
+        <button type="submit" class="submit-btn" onclick="shopcheck()">Register</button>
+      </form>
+      <p style="text-align: center;">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+  <script>
+    function shopcheck() {
+      // Add your shopcheck() function implementation here
+    }
+  </script>
+</body>
+</html>

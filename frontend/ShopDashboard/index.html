@@ -108,79 +108,42 @@
     th {
         background-color: #f2f2f2;
     }
-    
-    /* General Styles */
-    .dropdown-parent {
-        position: relative;
-    }
-    
-    .dropbtn {
-        display: inline-block;
-        padding: 10px 20px;
-        color: #fff;
-        /* background-color: #6dbab1; */
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-    
-    .dropbtn:hover, .dropbtn:focus {
-        background-color: #6dbab1;
-        outline: none;
-    }
-    
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 5px;
-        padding: 10px 0;
-    }
-    
-    .dropdown-content li {
-        list-style: none;
-    }
-    
-    .dropdown-content li a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
-    
-    .dropdown-content li a:hover {
-        background-color: #f1f1f1;
-    }
-    
-    /* Show the dropdown on hover */
-    .dropdown-parent:hover .dropdown-content {
-        display: block;
-    }
-    
-    /* Mobile view CSS */
-    @media (max-width: 768px) {
-        .container {
-            flex-direction: column;
-            align-items: center;
-            margin-left: 0;
-        }
-    
-        .box {
-            width: 90%;
-        }
-    
-        nav ul {
-            flex-direction: column;
-        }
-    
-        nav ul li {
-            margin: 10px 0;
-        }
-    }
+   /* Dropdown Styles */
+.dropdown-parent {
+    position: relative;
+}
+
+.dropbtn {
+    display: block;
+    cursor: pointer; /* Ensure cursor changes to pointer on clickable items */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-parent.active .dropdown-content {
+    display: block;
+}
     /* Toggle for Sidebar */
 @media (max-width: 768px) {
     .br-sideleft {
@@ -280,17 +243,18 @@
                 <!-- <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"></i>Farmer Section</a>
                     
                 </li> -->
-                <li class="dropdown-parent" aria-haspopup="true" aria-expanded="false">
-                    <a href="Manageshop.html" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
-                        <i class="la la-image"></i>Farmer Section
+                <li class="dropdown-parent">
+                    <a href="#" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
+                        <i class="la la-image"></i> Farmer Section
                     </a>
-                    <ul id="ordersDropdown" class="dropdown-content" role="menu">
-                        <li role="none"><a href="Farmer_Order.html" class="waves-effect waves-primary" role="menuitem">Order Form</a></li>
-                        <li role="none"><a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary" role="menuitem">History Orders</a></li>
-                        <li role="none"><a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary" role="menuitem">Farmer Details</a></li>
-                        <li role="none"><a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary" role="menuitem">Payment History</a></li>
-                        <!-- <li role="none"><a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary" role="menuitem">Cart</a></li> -->
-                    </ul>
+                    <div id="ordersDropdown" class="dropdown-content">
+                        <a href="Farmer_Order.html" class="waves-effect waves-primary">Order Form</a>
+                        <a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary">History Orders</a>
+                        <a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary">Farmer Details</a>
+                        <a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary">Payment History</a>
+                        <a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary">Cart</a>
+                        <a href="Farmer_Wallet.html" class="waves-effect waves-primary">Wallet</a>
+                    </div>
                 </li>
                 
                 <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a>
@@ -703,18 +667,36 @@ window.onload = displayProducts;
     document.getElementById(dropdownId).classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
+// JavaScript for toggling dropdown
+function toggleDropdown(event, dropdownId) {
+    event.preventDefault();
+    var dropdown = document.getElementById(dropdownId);
+    var dropdownParent = event.target.closest('.dropdown-parent');
+    
+    if (dropdownParent.classList.contains('active')) {
+        dropdownParent.classList.remove('active');
+    } else {
+        // Close any other open dropdowns
+        var activeDropdown = document.querySelector('.dropdown-parent.active');
+        if (activeDropdown) {
+            activeDropdown.classList.remove('active');
         }
+        // Open clicked dropdown
+        dropdownParent.classList.add('active');
     }
 }
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+    var dropdowns = document.querySelectorAll('.dropdown-parent');
+    dropdowns.forEach(function(dropdown) {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+});
+
+
 
 function redirectToOrders() {
             window.location.href = "Orders.html";

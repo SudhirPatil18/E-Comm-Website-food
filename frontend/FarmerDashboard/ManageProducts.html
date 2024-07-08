@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Products</title>
-        <style>
-            body {
+    <style>
+     /* Basic Reset and Body Styles */
+body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
     display: flex;
@@ -24,6 +25,9 @@
     width: 100%;
     max-width: 900px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2, h3 {
@@ -31,49 +35,10 @@ h2, h3 {
     text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -190,8 +155,10 @@ th {
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .admin-container {
-        width: 100%;
         padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     table {
@@ -202,19 +169,69 @@ th {
         padding: 8px;
     }
 
-    button {
+    .edit-btn, .delete-btn {
+        padding: 5px;
         font-size: 14px;
-        padding: 8px;
+        min-width: unset;
+    }
+
+    .popup-form {
+        max-width: 100%;
+    }
+
+    .popup-form-container {
+        align-items: flex-start; /* Align the form to the top */
+    }
+    
+    .popup-form form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Adjusting the table to stack rows in columns */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
     }
 }
 
-        </style>
+
+
+    </style>
 </head>
 <body>
     <div class="admin-container">
         <h2>Manage Products</h2>
         
-
         <!-- Product List Table -->
         <h3>Product List</h3>
         <table>
@@ -229,11 +246,11 @@ th {
             </thead>
             <tbody>
                 <tr>
-                    <td>Sample Product</td>
-                    <td>This is a sample product description.</td>
-                    <td>$99.99</td>
-                    <td>Category 1</td>
-                    <td>
+                    <td data-label="Name">Sample Product</td>
+                    <td data-label="Description">This is a sample product description.</td>
+                    <td data-label="Price">$99.99</td>
+                    <td data-label="Category">Category 1</td>
+                    <td data-label="Actions">
                         <button class="edit-btn" onclick="openEditForm()">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
@@ -241,43 +258,23 @@ th {
                 <!-- More products can be added here -->
             </tbody>
         </table>
+        
     </div>
 
-    <!-- Edit Product Popup Form -->
-    <div id="edit-product-form-container" class="popup-form-container">
-        <div class="popup-form">
-            <span class="close-btn" onclick="closeEditForm()">&times;</span>
-            <h3>Edit Product</h3>
-            <form id="edit-product-form">
-                <div class="form-group">
-                    <label for="edit-product-name">Product Name</label>
-                    <input type="text" id="edit-product-name" name="edit-product-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-product-description">Product Description</label>
-                    <textarea id="edit-product-description" name="edit-product-description" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="edit-product-price">Product Price</label>
-                    <input type="number" id="edit-product-price" name="edit-product-price" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-product-category">Product Category</label>
-                    <select id="edit-product-category" name="edit-product-category" required>
-                        <option value="" disabled selected>Select a category</option>
-                        <option value="category1">Category 1</option>
-                        <option value="category2">Category 2</option>
-                        <!-- More categories can be added here -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="edit-product-image">Product Image</label>
-                    <input type="file" id="edit-product-image" name="edit-product-image" required>
-                </div>
-                <button type="submit">Update Product</button>
-            </form>
-        </div>
-    </div>
+    
+        <!-- <tr>
+            <td data-label="Name">Sample Product</td>
+            <td data-label="Description">This is a sample product description.</td>
+            <td data-label="Price">$99.99</td>
+            <td data-label="Category">Category 1</td>
+            <td data-label="Actions">
+                <button class="edit-btn" onclick="openEditForm()">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </td>
+        </tr> -->
+         <!-- More products can be added here  -->
+   
+    
 
     <script>
         function openEditForm() {

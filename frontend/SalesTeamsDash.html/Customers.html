@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+#searchBar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#searchInput {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#customersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#customersTable thead {
+    background-color: #f2f2f2;
+}
+
+#customersTable th, #customersTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#customersTable th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.actions {
+    text-align: center;
+}
+
+.actions .btn-edit, .actions .btn-delete {
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.btn-add {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: #45a049;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+    #customersTable, #customersTable thead, #customersTable tbody, #customersTable th, #customersTable td, #customersTable tr {
+        display: block;
+        width: 100%;
+    }
+
+    #customersTable tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    #customersTable td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    #customersTable td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    #searchInput {
+        width: 95%;
+    }
+}
+
+/* Existing styles */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input {
+    width: 98%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Existing responsive styles */
+
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Customers</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchCustomers()" placeholder="Search for customers..">
+        </div>
+        <table id="customersTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Street Address</th>
+                    <th>Town/City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Zip Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dummy data for customers -->
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>123-456-7890</td>
+                    <td>123 Main St</td>
+                    <td>Springfield</td>
+                    <td>IL</td>
+                    <td>USA</td>
+                    <td>62701</td>
+                    <td class="actions">
+                    <button class="btn-edit" style="background-color: green; border-radius: 5px;color: white;">Edit</button>
+                        <button class="btn-delete" style="background-color: red; border-radius: 5px;color: white;">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for more customers -->
+            </tbody>
+        </table>
+        <button class="btn-add" onclick="openForm()">Add Customer</button>
+
+    </main>
+    <div id="customerFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <h2>Add Customer</h2>
+            <form id="customerForm">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="streetAddress">Street Address</label>
+                <input type="text" id="streetAddress" name="streetAddress" required>
+
+                <label for="townCity">Town/City</label>
+                <input type="text" id="townCity" name="townCity" required>
+
+                <label for="state">State</label>
+                <select id="state" name="state" required style="width: 102%; padding: 5px;">
+                    <option value="">Select a state</option>
+                    <!-- State options will be populated here -->
+                </select>
+
+                <label for="country" >Country</label>
+                <select id="country" name="country" required style="width: 102%; padding: 5px;">
+                    <option value="">Select a country</option>
+                    <!-- Country options will be populated here -->
+                </select>
+
+
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" required>
+
+                <button type="button" onclick="addCustomer()">Add Customer</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+
+const statesInIndia = [
+            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh",
+            "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+            "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
+            "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Lakshadweep",
+            "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
+        ];
+
+        function populateStatesDropdown() {
+            const stateSelect = document.getElementById('state');
+            statesInIndia.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        }
+
+        // Call the function to populate the dropdown when the page loads
+        window.onload = populateStatesDropdown;
+    
+
+const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
+    "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
+    "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+    "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia",
+    "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica",
+    "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini",
+    "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+    "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia",
+    "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+    "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
+    "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+    "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+    "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia",
+    "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines",
+    "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+    "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+    "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan",
+    "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania",
+    "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
+    "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
+
+function populateCountryDropdown() {
+    const countrySelect = document.getElementById('country');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countrySelect.appendChild(option);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', populateCountryDropdown);
+
+
+
+        function searchCustomers() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('customersTable');
+    const tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName('td');
+        let display = false;
+        for (let j = 0; j < td.length; j++) {
+            if (td[j].textContent.toLowerCase().includes(filter)) {
+                display = true;
+                break;
+            }
+        }
+        tr[i].style.display = display ? '' : 'none';
+    }
+}
+
+function openForm() {
+    document.getElementById('customerFormModal').style.display = 'block';
+}
+
+function closeForm() {
+    document.getElementById('customerFormModal').style.display = 'none';
+}
+
+function addCustomer() {
+    const table = document.getElementById('customersTable').getElementsByTagName('tbody')[0];
+    const form = document.getElementById('customerForm');
+
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const streetAddress = form.streetAddress.value;
+    const townCity = form.townCity.value;
+    const state = form.state.value;
+    const country = form.country.value;
+    const zipCode = form.zipCode.value;
+
+    const newRow = table.insertRow();
+    newRow.innerHTML = `
+        <td>${firstName}</td>
+        <td>${lastName}</td>
+        <td>${email}</td>
+        <td>${phone}</td>
+        <td>${streetAddress}</td>
+        <td>${townCity}</td>
+        <td>${state}</td>
+        <td>${country}</td>
+        <td>${zipCode}</td>
+        <td class="actions">
+            <button class="btn-edit">Edit</button>
+            <button class="btn-delete">Delete</button>
+        </td>
+    `;
+
+    newRow.querySelector('.btn-edit').addEventListener('click', () => {
+        alert('Edit functionality not implemented yet.');
+    });
+
+    newRow.querySelector('.btn-delete').addEventListener('click', () => {
+        table.deleteRow(newRow.rowIndex);
+    });
+
+    closeForm();
+    form.reset();
+}
+
+document.querySelectorAll('.btn-edit').forEach(button => {
+    button.addEventListener('click', () => {
+        alert('Edit functionality not implemented yet.');
+    });
+});
+
+document.querySelectorAll('.btn-delete').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const row = event.target.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    });
+});
+function openForm() {
+    document.getElementById('customerFormModal').style.display = 'block';
+    document.getElementById('customerFormModal').style.display = 'block !important';
+}
+
+
+
+    </script>
+</body>
+</html>
